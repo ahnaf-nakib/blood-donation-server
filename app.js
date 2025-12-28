@@ -22,18 +22,9 @@ const allowedOrigins = [
 ].filter(Boolean);
 
 app.use(cors({
-  origin: function (origin, callback) {
-    // origin না থাকলে (যেমন Postman) অথবা localhost দিয়ে শুরু হলে অথবা লিস্টে থাকলে অনুমতি দাও
-    if (!origin || origin.startsWith('http://localhost:') || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      // লগে এররটি স্পষ্টভাবে দেখার জন্য অরিজিনসহ মেসেজ
-      callback(new Error(`Not allowed by CORS at origin: ${origin}`));
-    }
-  },
+  origin: ['https://blood-donationbd.netlify.app', 'http://localhost:5173', 'http://localhost:5174'],
   credentials: true
 }));
-
 app.use(express.json());
 
 // Connect to MongoDB 
